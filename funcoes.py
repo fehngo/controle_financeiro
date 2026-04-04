@@ -62,6 +62,7 @@ def menu(*funcoes):
 
 def listar_transacoes(lista):
     print(f'{"ind":^5}|{"Descrição":<48}|{"R$ Valor":^15}')
+    print("-" * 70)
     for i, v in enumerate(lista):
         if v["tipo"] == "Entrada":
             print(f"\033[32m{i+1:^5}|{v['descricao']:<48}|{f'R$ {v['valor']:.2f}':^15}\033[m")
@@ -75,11 +76,43 @@ def listar_transacoes(lista):
         print(f"\033[31m{'TOTAL':^54}| {f'R$ {saldo:.2f}':^15}\033[m")
 
 
-def calcula_saldo(lista):
+def calcula_saldo(lista, filtro="Total"):
     saldo = 0
     for v in lista:
-        if v["tipo"] == "Entrada":
+        tipo = v["tipo"]
+        if filtro == "Entrada" and tipo == "Entrada":
             saldo += v["valor"]
-        else:
-            saldo -= v["valor"]
+        elif filtro == "Saida" and tipo == "Saida":
+            saldo += v["valor"]
+        elif filtro == "Total":
+            if tipo == "Entrada":
+                saldo += v["valor"]
+            else:
+                saldo -= v["valor"]
     return saldo
+
+
+def filtrar_transacoes(lista, filtro):
+    cabecalho("Filtrar Transações")
+    encontrou = False
+    print(f'{"ind":^5}|{"Descrição":<48}|{"R$ Valor":^15}')
+    print("-" * 70)
+    for i, v in enumerate(lista):
+        if filtro == "Entrada":
+            if v["tipo"] == "Entrada":
+                print(f"\033[32m{i+1:^5}|{v['descricao']:<48}|{f'R$ {v['valor']:.2f}':^15}\033[m")
+                encontrou = True
+        else:
+            if v["tipo"] == "Saida":
+                print(f"\033[31m{i+1:^5}|{v['descricao']:<48}|{f'R$ {v['valor']:.2f}':^15}\033[m")
+                encontrou = True
+    print("")
+    if not encontrou:
+        print(f"{'Nenhuma transação encontrada.'}".center(70))
+
+    print("-" * 70)
+    saldo = calcula_saldo(lista, filtro)
+    if filtro == "Entrada":
+        print(f"\033[32m{f'Total do filtro de {filtro}':^54}| {f'R$ {saldo:.2f}':^15}\033[m")
+    else:
+        print(f"\033[31m{f'Total do filtro de {filtro}':^54}| {f'R$ {saldo:.2f}':^15}\033[m")

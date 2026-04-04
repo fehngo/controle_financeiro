@@ -18,10 +18,5 @@
         "descricao": "Manutenção do carro",
         "valor": 600.0,
         "tipo": "Saida"
-    },
-    {
-        "descricao": "Debito automático empréstimo",
-        "valor": 3500.0,
-        "tipo": "Saida"
     }
 ]
