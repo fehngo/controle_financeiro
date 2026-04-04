@@ -1,0 +1,27 @@
+[
+    {
+        "descricao": "Salário",
+        "valor": 3500.0,
+        "tipo": "Entrada"
+    },
+    {
+        "descricao": "Supermercado",
+        "valor": 127.98,
+        "tipo": "Saida"
+    },
+    {
+        "descricao": "Café na padaria",
+        "valor": 29.7,
+        "tipo": "Saida"
+    },
+    {
+        "descricao": "Manutenção do carro",
+        "valor": 600.0,
+        "tipo": "Saida"
+    },
+    {
+        "descricao": "Debito automático empréstimo",
+        "valor": 3500.0,
+        "tipo": "Saida"
+    }
+]
