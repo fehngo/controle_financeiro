@@ -31,7 +31,7 @@ controle_financeiro/
 │
 ├── main.py
 ├── funcoes.py
-└── dados.json
+└── banco.json
 ```
 
 ---
