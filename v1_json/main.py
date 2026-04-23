@@ -1,5 +1,6 @@
 from time import sleep
-import funcoes
+
+from v1_json import funcoes
 
 while True:
     opcao = funcoes.menu(
@@ -85,4 +86,5 @@ while True:
     elif opcao == 6:
         print("Saindo do programa...")
         sleep(2)
+        break
         break

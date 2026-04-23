@@ -1,5 +1,5 @@
-from time import sleep
 import json
+from time import sleep
 
 arq = "banco.json"
 
@@ -65,9 +65,11 @@ def listar_transacoes(lista):
     print("-" * 70)
     for i, v in enumerate(lista):
         if v["tipo"] == "Entrada":
-            print(f"\033[32m{i+1:^5}|{v['descricao']:<48}|{f'R$ {v['valor']:.2f}':^15}\033[m")
+            valor_formatado = f"R$ {v['valor']:.2f}"
+            print(f"\033[32m{i+1:^5}|{v['descricao']:<48}|{valor_formatado:^15}\033[m")
         else:
-            print(f"\033[31m{i+1:^5}|{v['descricao']:<48}|{f'R$ {v['valor']:.2f}':^15}\033[m")
+            valor_formatado = f"R$ {v['valor']:.2f}"
+            print(f"\033[31m{i+1:^5}|{v['descricao']:<48}|{valor_formatado:^15}\033[m")
     print("-" * 70)
     saldo = calcula_saldo(lista)
     if saldo >= 0:
@@ -100,11 +102,13 @@ def filtrar_transacoes(lista, filtro):
     for i, v in enumerate(lista):
         if filtro == "Entrada":
             if v["tipo"] == "Entrada":
-                print(f"\033[32m{i+1:^5}|{v['descricao']:<48}|{f'R$ {v['valor']:.2f}':^15}\033[m")
+                valor_formatado = f"R$ {v['valor']:.2f}"
+                print(f"\033[32m{i+1:^5}|{v['descricao']:<48}|{valor_formatado:^15}\033[m")
                 encontrou = True
         else:
             if v["tipo"] == "Saida":
-                print(f"\033[31m{i+1:^5}|{v['descricao']:<48}|{f'R$ {v['valor']:.2f}':^15}\033[m")
+                valor_formatado = f"R$ {v['valor']:.2f}"
+                print(f"\033[31m{i+1:^5}|{v['descricao']:<48}|{valor_formatado:^15}\033[m")
                 encontrou = True
     print("")
     if not encontrou:
